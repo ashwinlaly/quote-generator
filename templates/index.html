@@ -6,7 +6,9 @@
 <body>
     <form method="post" enctype="multipart/form-data">
         <label for="text">Day:</label>
-        <input name="day" id="day" type="text"><br>
+        <input name="day" id="day" type="text" />
+        <button id="check" >check</button>
+        <br>
 
         <label for="text">Enter Text 1:</label>
         <input name="text1" id="text1" type="text" /><br>
@@ -20,4 +22,1680 @@
         <button type="submit">Generate Image</button>
     </form>
 </body>
+<script>
+    (function() {
+        var day = document.getElementById('day');
+        var check = document.getElementById('check');
+
+        let data = [
+  {
+    "day": 91,
+    "reading1": "Judges 6-8",
+    "reading2": "Ruth 3",
+    "reading3": "Psalm 135"
+  },
+  {
+    "day": 92,
+    "reading1": "Judges 9-11",
+    "reading2": "Ruth 4",
+    "reading3": "Psalm 137"
+  },
+  {
+    "day": 93,
+    "reading1": "Judges 12-15",
+    "reading2": null,
+    "reading3": "Psalm 146"
+  },
+  {
+    "day": 94,
+    "reading1": "Judges 16-18",
+    "reading2": null,
+    "reading3": "Psalm 147"
+  },
+  {
+    "day": 95,
+    "reading1": "Judges 19-21",
+    "reading2": null,
+    "reading3": "Psalm 148"
+  },
+  {
+    "day": 96,
+    "reading1": "1 Samuel 1-2",
+    "reading2": null,
+    "reading3": "Psalm 149"
+  },
+  {
+    "day": 97,
+    "reading1": "1 Samuel 3-5",
+    "reading2": null,
+    "reading3": "Psalm 150"
+  },
+  {
+    "day": 98,
+    "reading1": "1 Samuel 6-8",
+    "reading2": null,
+    "reading3": "Psalm 86"
+  },
+  {
+    "day": 99,
+    "reading1": "John 1-3",
+    "reading2": null,
+    "reading3": "Proverbs 5:1-6"
+  },
+  {
+    "day": 100,
+    "reading1": "John 4-6",
+    "reading2": null,
+    "reading3": "Proverbs 5:7-14"
+  },
+  {
+    "day": 101,
+    "reading1": "John 7-9",
+    "reading2": null,
+    "reading3": "Proverbs 5:15-23"
+  },
+  {
+    "day": 102,
+    "reading1": "John 10-12",
+    "reading2": null,
+    "reading3": "Proverbs 6:1-5"
+  },
+  {
+    "day": 103,
+    "reading1": "John 13-15",
+    "reading2": null,
+    "reading3": "Proverbs 6:6-11"
+  },
+  {
+    "day": 104,
+    "reading1": "John 16-18",
+    "reading2": null,
+    "reading3": "Proverbs 6:12-15"
+  },
+  {
+    "day": 105,
+    "reading1": "John 19-21",
+    "reading2": null,
+    "reading3": "Proverbs 6:16-22"
+  },
+  {
+    "day": 106,
+    "reading1": "1 Samuel 9-10",
+    "reading2": null,
+    "reading3": "Proverbs 6:23-35"
+  },
+  {
+    "day": 107,
+    "reading1": "1 Samuel 11-12",
+    "reading2": null,
+    "reading3": "Psalm 55"
+  },
+  {
+    "day": 108,
+    "reading1": "1 Samuel 13-14",
+    "reading2": null,
+    "reading3": "Psalm 58"
+  },
+  {
+    "day": 109,
+    "reading1": "1 Samuel 15-16",
+    "reading2": null,
+    "reading3": "Psalm 61"
+  },
+  {
+    "day": 110,
+    "reading1": "1 Samuel 17",
+    "reading2": null,
+    "reading3": "Psalm 12"
+  },
+  {
+    "day": 111,
+    "reading1": "1 Samuel 18-19",
+    "reading2": null,
+    "reading3": "Psalm 59"
+  },
+  {
+    "day": 112,
+    "reading1": "1 Samuel 20",
+    "reading2": null,
+    "reading3": "Psalm 142"
+  },
+  {
+    "day": 113,
+    "reading1": "1 Samuel 21-22",
+    "reading2": null,
+    "reading3": "Psalm 52"
+  },
+  {
+    "day": 114,
+    "reading1": "1 Samuel 23",
+    "reading2": null,
+    "reading3": "Psalm 54"
+  },
+  {
+    "day": 115,
+    "reading1": "1 Samuel 24",
+    "reading2": null,
+    "reading3": "Psalm 57"
+  },
+  {
+    "day": 116,
+    "reading1": "1 Samuel 25",
+    "reading2": null,
+    "reading3": "Psalm 63"
+  },
+  {
+    "day": 117,
+    "reading1": "1 Samuel 26",
+    "reading2": null,
+    "reading3": "Psalm 56"
+  },
+  {
+    "day": 118,
+    "reading1": "1 Samuel 27-28",
+    "reading2": null,
+    "reading3": "Psalm 34"
+  },
+  {
+    "day": 119,
+    "reading1": "1 Samuel 29-31",
+    "reading2": null,
+    "reading3": "Psalm 18"
+  },
+  {
+    "day": 120,
+    "reading1": "2 Samuel 1",
+    "reading2": "1 Chronicles 1",
+    "reading3": "Psalm 13"
+  },
+  {
+    "day": 121,
+    "reading1": "2 Samuel 2",
+    "reading2": "1 Chronicles 2",
+    "reading3": "Psalm 24"
+  },
+  {
+    "day": 122,
+    "reading1": "2 Samuel 3",
+    "reading2": "1 Chronicles 3-4",
+    "reading3": "Psalm 25"
+  },
+  {
+    "day": 123,
+    "reading1": "2 Samuel 4",
+    "reading2": "1 Chronicles 5-6",
+    "reading3": "Psalm 26"
+  },
+  {
+    "day": 124,
+    "reading1": "2 Samuel 5",
+    "reading2": "1 Chronicles 7-8",
+    "reading3": "Psalm 27"
+  },
+  {
+    "day": 125,
+    "reading1": "2 Samuel 6-7",
+    "reading2": "1 Chronicles 9",
+    "reading3": "Psalm 89"
+  },
+  {
+    "day": 126,
+    "reading1": "2 Samuel 8",
+    "reading2": "1 Chronicles 10-11",
+    "reading3": "Psalm 60"
+  },
+  {
+    "day": 127,
+    "reading1": "2 Samuel 9",
+    "reading2": "1 Chronicles 12",
+    "reading3": "Psalm 28"
+  },
+  {
+    "day": 128,
+    "reading1": "2 Samuel 10",
+    "reading2": "1 Chronicles 13",
+    "reading3": "Psalm 31"
+  },
+  {
+    "day": 129,
+    "reading1": "2 Samuel 11",
+    "reading2": "1 Chronicles 14-15",
+    "reading3": "Psalm 32"
+  },
+  {
+    "day": 130,
+    "reading1": "2 Samuel 12",
+    "reading2": "1 Chronicles 16",
+    "reading3": "Psalm 51"
+  },
+  {
+    "day": 131,
+    "reading1": "2 Samuel 13",
+    "reading2": "1 Chronicles 17",
+    "reading3": "Psalm 35"
+  },
+  {
+    "day": 132,
+    "reading1": "2 Samuel 14",
+    "reading2": "1 Chronicles 18",
+    "reading3": "Psalm 14"
+  },
+  {
+    "day": 133,
+    "reading1": "2 Samuel 15",
+    "reading2": "1 Chronicles 19-20",
+    "reading3": "Psalm 3"
+  },
+  {
+    "day": 134,
+    "reading1": "2 Samuel 16",
+    "reading2": "1 Chronicles 21",
+    "reading3": "Psalm 15"
+  },
+  {
+    "day": 135,
+    "reading1": "2 Samuel 17",
+    "reading2": "1 Chronicles 22",
+    "reading3": "Psalm 36"
+  },
+  {
+    "day": 136,
+    "reading1": "2 Samuel 18",
+    "reading2": "1 Chronicles 23",
+    "reading3": "Psalm 37"
+  },
+  {
+    "day": 137,
+    "reading1": "2 Samuel 19",
+    "reading2": "1 Chronicles 24",
+    "reading3": "Psalm 38"
+  },
+  {
+    "day": 138,
+    "reading1": "2 Samuel 20",
+    "reading2": "1 Chronicles 25",
+    "reading3": "Psalm 39"
+  },
+  {
+    "day": 139,
+    "reading1": "2 Samuel 21",
+    "reading2": "1 Chronicles 26",
+    "reading3": "Psalm 40"
+  },
+  {
+    "day": 140,
+    "reading1": "2 Samuel 22",
+    "reading2": "1 Chronicles 27",
+    "reading3": "Psalm 41"
+  },
+  {
+    "day": 141,
+    "reading1": "2 Samuel 23",
+    "reading2": "1 Chronicles 28",
+    "reading3": "Psalm 42"
+  },
+  {
+    "day": 142,
+    "reading1": "2 Samuel 24",
+    "reading2": "1 Chronicles 29",
+    "reading3": "Psalm 30"
+  },
+  {
+    "day": 143,
+    "reading1": "1 Kings 1",
+    "reading2": "2 Chronicles 1",
+    "reading3": "Psalm 43"
+  },
+  {
+    "day": 144,
+    "reading1": "1 Kings 2",
+    "reading2": "2 Chronicles 2-3",
+    "reading3": "Psalm 62"
+  },
+  {
+    "day": 145,
+    "reading1": "1 Kings 3",
+    "reading2": "2 Chronicles 4-5",
+    "reading3": "Psalm 64"
+  },
+  {
+    "day": 146,
+    "reading1": "1 Kings 4",
+    "reading2": "2 Chronicles 6",
+    "reading3": "Psalm 65"
+  },
+  {
+    "day": 147,
+    "reading1": "1 Kings 5",
+    "reading2": "2 Chronicles 7-8",
+    "reading3": "Psalm 66"
+  },
+  {
+    "day": 148,
+    "reading1": "1 Kings 6",
+    "reading2": "2 Chronicles 9",
+    "reading3": "Psalm 4"
+  },
+  {
+    "day": 149,
+    "reading1": "1 Kings 7",
+    "reading2": "Ecclesiastes 1-2",
+    "reading3": "Psalm 5"
+  },
+  {
+    "day": 150,
+    "reading1": "1 Kings 8",
+    "reading2": "Ecclesiastes 3-5",
+    "reading3": "Psalm 6"
+  },
+  {
+    "day": 151,
+    "reading1": "1 Kings 9",
+    "reading2": "Ecclesiastes 6-7",
+    "reading3": "Psalm 7"
+  },
+  {
+    "day": 152,
+    "reading1": "1 Kings 10",
+    "reading2": "Ecclesiastes 8-9",
+    "reading3": "Psalm 8"
+  },
+  {
+    "day": 153,
+    "reading1": "1 Kings 11",
+    "reading2": "Ecclesiastes 10-12",
+    "reading3": "Psalm 9"
+  },
+  {
+    "day": 154,
+    "reading1": "Mark 1-2",
+    "reading2": null,
+    "reading3": "Psalm 11"
+  },
+  {
+    "day": 155,
+    "reading1": "Mark 3-4",
+    "reading2": null,
+    "reading3": "Psalm 20"
+  },
+  {
+    "day": 156,
+    "reading1": "Mark 5-6",
+    "reading2": null,
+    "reading3": "Psalm 21"
+  },
+  {
+    "day": 157,
+    "reading1": "Mark 7-8",
+    "reading2": null,
+    "reading3": "Psalm 23"
+  },
+  {
+    "day": 158,
+    "reading1": "Mark 9-10",
+    "reading2": null,
+    "reading3": "Psalm 29"
+  },
+  {
+    "day": 159,
+    "reading1": "Mark 11-12",
+    "reading2": null,
+    "reading3": "Psalm 67"
+  },
+  {
+    "day": 160,
+    "reading1": "Mark 13-14",
+    "reading2": null,
+    "reading3": "Psalm 68"
+  },
+  {
+    "day": 161,
+    "reading1": "Mark 15-16",
+    "reading2": null,
+    "reading3": "Psalm 22"
+  },
+  {
+    "day": 162,
+    "reading1": "1 Kings 12",
+    "reading2": "2 Chronicles 10-11",
+    "reading3": "Song of Solomon 1"
+  },
+  {
+    "day": 163,
+    "reading1": "1 Kings 13",
+    "reading2": "2 Chronicles 12-13",
+    "reading3": "Song of Solomon 2"
+  },
+  {
+    "day": 164,
+    "reading1": "1 Kings 14",
+    "reading2": "2 Chronicles 14-15",
+    "reading3": "Song of Solomon 3"
+  },
+  {
+    "day": 165,
+    "reading1": "1 Kings 15-16",
+    "reading2": "2 Chronicles 16-17",
+    "reading3": "Song of Solomon 4"
+  },
+  {
+    "day": 166,
+    "reading1": "1 Kings 17-18",
+    "reading2": "2 Chronicles 18-19",
+    "reading3": "Song of Solomon 5"
+  },
+  {
+    "day": 167,
+    "reading1": "1 Kings 19-20",
+    "reading2": "2 Chronicles 20",
+    "reading3": "Song of Solomon 6"
+  },
+  {
+    "day": 168,
+    "reading1": "1 Kings 21",
+    "reading2": "2 Chronicles 21-22",
+    "reading3": "Song of Solomon 7"
+  },
+  {
+    "day": 169,
+    "reading1": "1 Kings 22",
+    "reading2": "2 Chronicles 23",
+    "reading3": "Song of Solomon 8"
+  },
+  {
+    "day": 170,
+    "reading1": "2 Kings 1",
+    "reading2": "2 Chronicles 24",
+    "reading3": "Psalm 69"
+  },
+  {
+    "day": 171,
+    "reading1": "2 Kings 2",
+    "reading2": "2 Chronicles 25",
+    "reading3": "Psalm 70"
+  },
+  {
+    "day": 172,
+    "reading1": "2 Kings 3",
+    "reading2": "2 Chronicles 26-27",
+    "reading3": "Psalm 72"
+  },
+  {
+    "day": 173,
+    "reading1": "2 Kings 4",
+    "reading2": "2 Chronicles 28",
+    "reading3": "Psalm 127"
+  },
+  {
+    "day": 174,
+    "reading1": "2 Kings 5",
+    "reading2": null,
+    "reading3": "Psalm 101"
+  },
+  {
+    "day": 175,
+    "reading1": "2 Kings 6-7",
+    "reading2": "Hosea 1-3",
+    "reading3": "Psalm 103"
+  },
+  {
+    "day": 176,
+    "reading1": "2 Kings 8",
+    "reading2": "Hosea 4-7",
+    "reading3": "Psalm 108"
+  },
+  {
+    "day": 177,
+    "reading1": "2 Kings 9",
+    "reading2": "Hosea 8-10",
+    "reading3": "Psalm 109"
+  },
+  {
+    "day": 178,
+    "reading1": "2 Kings 10",
+    "reading2": "Hosea 11-14",
+    "reading3": "Psalm 110"
+  },
+  {
+    "day": 179,
+    "reading1": "2 Kings 11-12",
+    "reading2": "Amos 1-3",
+    "reading3": "Psalm 110"
+  },
+  {
+    "day": 180,
+    "reading1": "2 Kings 13-14",
+    "reading2": "Amos 4-6",
+    "reading3": "Psalm 122"
+  },
+  {
+    "day": 181,
+    "reading1": "2 Kings 15",
+    "reading2": "Amos 7-9",
+    "reading3": "Psalm 124"
+  },
+  {
+    "day": 182,
+    "reading1": "2 Kings 16",
+    "reading2": "Jonah 1-4",
+    "reading3": "Psalm 138"
+  },
+  {
+    "day": 183,
+    "reading1": "2 Kings 17",
+    "reading2": "Micah 1-4",
+    "reading3": "Psalm 139"
+  },
+  {
+    "day": 184,
+    "reading1": "2 Kings 18",
+    "reading2": "Micah 5-7",
+    "reading3": "Psalm 140"
+  },
+    {
+    "day": 185,
+    "reading1": "2 Kings 19",
+    "reading2": "2 Chronicles 29",
+    "reading3": "Psalm 141"
+  },
+  {
+    "day": 186,
+    "reading1": "2 Kings 20",
+    "reading2": "2 Chronicles 30",
+    "reading3": "Psalm 143"
+  },
+  {
+    "day": 187,
+    "reading1": "2 Kings 21",
+    "reading2": "2 Chronicles 31",
+    "reading3": "Psalm 144"
+  },
+  {
+    "day": 188,
+    "reading1": "2 Kings 22",
+    "reading2": "2 Chronicles 32",
+    "reading3": "Psalm 145"
+  },
+  {
+    "day": 189,
+    "reading1": "2 Kings 23",
+    "reading2": "2 Chronicles 33",
+    "reading3": "Proverbs 7"
+  },
+  {
+    "day": 190,
+    "reading1": "2 Kings 24",
+    "reading2": "2 Chronicles 35",
+    "reading3": "Proverbs 8:22-36"
+  },
+  {
+    "day": 191,
+    "reading1": "2 Kings 25",
+    "reading2": "2 Chronicles 36",
+    "reading3": "Proverbs 9:1-6"
+  },
+  {
+    "day": 192,
+    "reading1": "Isaiah 1-2",
+    "reading2": "Tobit 1-2",
+    "reading3": "Proverbs 9:7-12"
+  },
+  {
+    "day": 193,
+    "reading1": "Isaiah 3-4",
+    "reading2": "Tobit 3-4",
+    "reading3": "Proverbs 9:13-18"
+  },
+  {
+    "day": 194,
+    "reading1": "Isaiah 5-6",
+    "reading2": "Tobit 5-6",
+    "reading3": "Proverbs 10:1-4"
+  },
+  {
+    "day": 195,
+    "reading1": "Isaiah 7-8",
+    "reading2": "Tobit 7-9",
+    "reading3": "Proverbs 10:5-8"
+  },
+  {
+    "day": 196,
+    "reading1": "Isaiah 9-10",
+    "reading2": "Tobit 10-12",
+    "reading3": "Proverbs 10:9-12"
+  },
+  {
+    "day": 197,
+    "reading1": "Isaiah 11-13",
+    "reading2": "Tobit 13-14",
+    "reading3": "Proverbs 10:13-16"
+  },
+  {
+    "day": 198,
+    "reading1": "Isaiah 14-15",
+    "reading2": "Joel 1-2",
+    "reading3": "Proverbs 10:17-20"
+  },
+  {
+    "day": 199,
+    "reading1": "Isaiah 16-17",
+    "reading2": "Joel 3",
+    "reading3": "Proverbs 10:21-24"
+  },
+  {
+    "day": 200,
+    "reading1": "Isaiah 18-20",
+    "reading2": "Nahum 1-2",
+    "reading3": "Proverbs 10:25-28"
+  },
+  {
+    "day": 201,
+    "reading1": "Isaiah 21-22",
+    "reading2": "Nahum 3",
+    "reading3": "Proverbs 10:29-32"
+  },
+  {
+    "day": 202,
+    "reading1": "Isaiah 23-24",
+    "reading2": "Habakkuk 1-2",
+    "reading3": "Proverbs 11:1-4"
+  },
+  {
+    "day": 203,
+    "reading1": "Isaiah 25-27",
+    "reading2": "Habakkuk 3",
+    "reading3": "Proverbs 11:5-8"
+  },
+  {
+    "day": 204,
+    "reading1": "Isaiah 28-29",
+    "reading2": "Zephaniah 1-2",
+    "reading3": "Proverbs 11:9-12"
+  },
+  {
+    "day": 205,
+    "reading1": "Isaiah 30-31",
+    "reading2": "Zephaniah 3",
+    "reading3": "Proverbs 11:13-16"
+  },
+  {
+    "day": 206,
+    "reading1": "Isaiah 32-33",
+    "reading2": "Baruch 1-2",
+    "reading3": "Proverbs 11:17-20"
+  },
+  {
+    "day": 207,
+    "reading1": "Isaiah 34-36",
+    "reading2": "Baruch 3-4",
+    "reading3": "Proverbs 11:21-24"
+  },
+  {
+    "day": 208,
+    "reading1": "Isaiah 37-38",
+    "reading2": "Baruch 5-6",
+    "reading3": "Proverbs 11:25-28"
+  },
+  {
+    "day": 209,
+    "reading1": "Isaiah 39-40",
+    "reading2": "Ezekiel 1",
+    "reading3": "Proverbs 11:29-31"
+  },
+  {
+    "day": 210,
+    "reading1": "Isaiah 41-42",
+    "reading2": "Ezekiel 2-3",
+    "reading3": "Proverbs 12:1-4"
+  },
+  {
+    "day": 211,
+    "reading1": "Isaiah 43-44",
+    "reading2": "Ezekiel 4-5",
+    "reading3": "Proverbs 12:5-8"
+  },
+  {
+    "day": 212,
+    "reading1": "Isaiah 45-46",
+    "reading2": "Ezekiel 6-7",
+    "reading3": "Proverbs 12:9-12"
+  },
+  {
+    "day": 213,
+    "reading1": "Isaiah 47-48",
+    "reading2": "Ezekiel 8-9",
+    "reading3": "Proverbs 12:13-16"
+  },
+  {
+    "day": 214,
+    "reading1": "Isaiah 49-50",
+    "reading2": "Ezekiel 10-11",
+    "reading3": "Proverbs 12:17-20"
+  },
+  {
+    "day": 215,
+    "reading1": "Isaiah 51-52",
+    "reading2": "Ezekiel 12-13",
+    "reading3": "Proverbs 12:21-24"
+  },
+  {
+    "day": 216,
+    "reading1": "Isaiah 53-54",
+    "reading2": "Ezekiel 14-15",
+    "reading3": "Proverbs 12:25-28"
+  },
+  {
+    "day": 217,
+    "reading1": "Isaiah 55-56",
+    "reading2": "Ezekiel 16",
+    "reading3": "Proverbs 13:1-4"
+  },
+  {
+    "day": 218,
+    "reading1": "Isaiah 57-58",
+    "reading2": "Ezekiel 17-18",
+    "reading3": "Proverbs 13:5-8"
+  },
+  {
+    "day": 219,
+    "reading1": "Isaiah 59-60",
+    "reading2": "Ezekiel 19",
+    "reading3": "Proverbs 13:9-12"
+  },
+  {
+    "day": 220,
+    "reading1": "Isaiah 61-62",
+    "reading2": "Ezekiel 20",
+    "reading3": "Proverbs 13:13-16"
+  },
+  {
+    "day": 221,
+    "reading1": "Isaiah 63-64",
+    "reading2": "Ezekiel 21-22",
+    "reading3": "Proverbs 13:17-20"
+  },
+  {
+    "day": 222,
+    "reading1": "Isaiah 65",
+    "reading2": "Ezekiel 23-24",
+    "reading3": "Proverbs 13:21-25"
+  },
+  {
+    "day": 223,
+    "reading1": "Isaiah 66",
+    "reading2": "Ezekiel 25-26",
+    "reading3": "Proverbs 14:1-4"
+  },
+  {
+    "day": 224,
+    "reading1": "Jeremiah 1",
+    "reading2": "Ezekiel 27",
+    "reading3": "Proverbs 14:5-8"
+  },
+  {
+    "day": 225,
+    "reading1": "Jeremiah 2",
+    "reading2": "Ezekiel 28",
+    "reading3": "Proverbs 14:9-12"
+  },
+  {
+    "day": 226,
+    "reading1": "Jeremiah 3",
+    "reading2": "Ezekiel 29-30",
+    "reading3": "Proverbs 14:13-16"
+  },
+  {
+    "day": 227,
+    "reading1": "Jeremiah 4",
+    "reading2": "Ezekiel 31-32",
+    "reading3": "Proverbs 14:17-20"
+  },
+  {
+    "day": 228,
+    "reading1": "Jeremiah 5",
+    "reading2": "Ezekiel 33",
+    "reading3": "Proverbs 14:21-24"
+  },
+  {
+    "day": 229,
+    "reading1": "Jeremiah 6",
+    "reading2": "Ezekiel 34-35",
+    "reading3": "Proverbs 14:25-28"
+  },
+  {
+    "day": 230,
+    "reading1": "Jeremiah 7",
+    "reading2": "Ezekiel 36",
+    "reading3": "Proverbs 14:29-32"
+  },
+  {
+    "day": 231,
+    "reading1": "Jeremiah 8",
+    "reading2": "Ezekiel 37-38",
+    "reading3": "Proverbs 14:33-35"
+  },
+  {
+    "day": 232,
+    "reading1": "Jeremiah 9",
+    "reading2": "Ezekiel 39",
+    "reading3": "Proverbs 15:1-4"
+  },
+  {
+    "day": 233,
+    "reading1": "Jeremiah 10-11",
+    "reading2": "Ezekiel 40",
+    "reading3": "Proverbs 15:5-8"
+  },
+  {
+    "day": 234,
+    "reading1": "Jeremiah 12-13",
+    "reading2": "Ezekiel 41-42",
+    "reading3": "Proverbs 15:9-12"
+  },
+  {
+    "day": 235,
+    "reading1": "Jeremiah 14-15",
+    "reading2": "Ezekiel 43-44",
+    "reading3": "Proverbs 15:13-16"
+  },
+  {
+    "day": 236,
+    "reading1": "Jeremiah 16-17",
+    "reading2": "Ezekiel 45-46",
+    "reading3": "Proverbs 15:17-20"
+  },
+  {
+    "day": 237,
+    "reading1": "Jeremiah 18-19",
+    "reading2": "Ezekiel 47-48",
+    "reading3": "Proverbs 15:21-24"
+  },
+  {
+    "day": 238,
+    "reading1": "Jeremiah 20-21",
+    "reading2": "Daniel 1-2",
+    "reading3": "Proverbs 15:25-28"
+  },
+  {
+    "day": 239,
+    "reading1": "Jeremiah 22",
+    "reading2": "Daniel 3",
+    "reading3": "Proverbs 15:29-33"
+  },
+  {
+    "day": 240,
+    "reading1": "Jeremiah 23",
+    "reading2": "Daniel 4-5",
+    "reading3": "Proverbs 16:1-4"
+  },
+  {
+    "day": 241,
+    "reading1": "Jeremiah 24-25",
+    "reading2": "Daniel 6-7",
+    "reading3": "Proverbs 16:5-8"
+  },
+  {
+    "day": 242,
+    "reading1": "Jeremiah 26-27",
+    "reading2": "Daniel 8-9",
+    "reading3": "Proverbs 16:9-12"
+  },
+  {
+    "day": 243,
+    "reading1": "Jeremiah 28-29",
+    "reading2": "Daniel 10-11",
+    "reading3": "Proverbs 16:13-16"
+  },
+  {
+    "day": 244,
+    "reading1": "Jeremiah 30",
+    "reading2": "Daniel 12-13",
+    "reading3": "Proverbs 16:17-20"
+  },
+  {
+    "day": 245,
+    "reading1": "Jeremiah 31",
+    "reading2": "Daniel 14",
+    "reading3": "Proverbs 16:21-24"
+  },
+  {
+    "day": 246,
+    "reading1": "Jeremiah 32",
+    "reading2": "Judith 1-2",
+    "reading3": "Proverbs 16:25-28"
+  },
+  {
+    "day": 247,
+    "reading1": "Jeremiah 33-34",
+    "reading2": "Judith 3-5",
+    "reading3": "Proverbs 16:29-33"
+  },
+  {
+    "day": 248,
+    "reading1": "Jeremiah 35-36",
+    "reading2": "Judith 6-7",
+    "reading3": "Proverbs 17:1-4"
+  },
+  {
+    "day": 249,
+    "reading1": "Jeremiah 37-38",
+    "reading2": "Judith 8-9",
+    "reading3": "Proverbs 17:5-8"
+  },
+  {
+    "day": 250,
+    "reading1": "Jeremiah 39-40",
+    "reading2": "Judith 10-11",
+    "reading3": "Proverbs 17:9-12"
+  },
+  {
+    "day": 251,
+    "reading1": "Jeremiah 41-42",
+    "reading2": "Judith 12-14",
+    "reading3": "Proverbs 17:13-16"
+  },
+  {
+    "day": 252,
+    "reading1": "Jeremiah 43-44",
+    "reading2": "Judith 15-16",
+    "reading3": "Proverbs 17:17-20"
+  },
+  {
+    "day": 253,
+    "reading1": "Jeremiah 45-46",
+    "reading2": "Lamentations 1",
+    "reading3": "Proverbs 17:21-28"
+  },
+  {
+    "day": 254,
+    "reading1": "Jeremiah 47-48",
+    "reading2": "Lamentations 2",
+    "reading3": "Proverbs 18:1-4"
+  },
+  {
+    "day": 255,
+    "reading1": "Jeremiah 49-50",
+    "reading2": "Lamentations 3",
+    "reading3": "Proverbs 18:5-8"
+  },
+  {
+    "day": 256,
+    "reading1": "Jeremiah 51",
+    "reading2": "Lamentations 4-5",
+    "reading3": "Proverbs 18:9-12"
+  },
+  {
+    "day": 257,
+    "reading1": "Jeremiah 52",
+    "reading2": "Obadiah",
+    "reading3": "Proverbs 18:13-16"
+  },
+  {
+    "day": 258,
+    "reading1": "Matthew 1-4",
+    "reading2": null,
+    "reading3": "Proverbs 18:17-20"
+  },
+  {
+    "day": 259,
+    "reading1": "Matthew 5-7",
+    "reading2": null,
+    "reading3": "Proverbs 18:21-24"
+  },
+  {
+    "day": 260,
+    "reading1": "Matthew 8-10",
+    "reading2": null,
+    "reading3": "Proverbs 19:1-4"
+  },
+  {
+    "day": 261,
+    "reading1": "Matthew 11-13",
+    "reading2": null,
+    "reading3": "Proverbs 19:5-8"
+  },
+  {
+    "day": 262,
+    "reading1": "Matthew 14-17",
+    "reading2": null,
+    "reading3": "Proverbs 19:9-12"
+  },
+  {
+    "day": 263,
+    "reading1": "Matthew 18-21",
+    "reading2": null,
+    "reading3": "Proverbs 19:13-16"
+  },
+  {
+    "day": 264,
+    "reading1": "Matthew 22-24",
+    "reading2": null,
+    "reading3": "Proverbs 19:17-20"
+  },
+  {
+    "day": 265,
+    "reading1": "Matthew 25-26",
+    "reading2": null,
+    "reading3": "Proverbs 19:21-24"
+  },
+  {
+    "day": 266,
+    "reading1": "Matthew 27-28",
+    "reading2": null,
+    "reading3": "Proverbs 19:25-29"
+  },
+  {
+    "day": 267,
+    "reading1": "Ezra 1-2",
+    "reading2": "Haggai 1-2",
+    "reading3": "Proverbs 20:1-3"
+  },
+  {
+    "day": 268,
+    "reading1": "Ezra 3-4",
+    "reading2": "Zechariah 1-3",
+    "reading3": "Proverbs 20:4-7"
+  },
+  {
+    "day": 269,
+    "reading1": "Ezra 5-6",
+    "reading2": "Zechariah 4-6",
+    "reading3": "Proverbs 20:8-11"
+  },
+  {
+    "day": 270,
+    "reading1": "Ezra 7-8",
+    "reading2": "Zechariah 7-8",
+    "reading3": "Proverbs 20:12-15"
+  },
+  {
+    "day": 271,
+    "reading1": "Ezra 9-10",
+    "reading2": "Zechariah 9-11",
+    "reading3": "Proverbs 20:16-19"
+  },
+  {
+    "day": 272,
+    "reading1": "Nehemiah 1-2",
+    "reading2": "Zechariah 12-13",
+    "reading3": "Proverbs 20:20-22"
+  },
+  {
+    "day": 273,
+    "reading1": "Nehemiah 3",
+    "reading2": "Zechariah 14",
+    "reading3": "Proverbs 20:23-26"
+  },
+  {
+    "day": 274,
+    "reading1": "Nehemiah 4-5",
+    "reading2": "Esther 11-12",
+    "reading3": "Proverbs 20:27-30"
+  },
+  {
+    "day": 275,
+    "reading1": "Nehemiah 6-7",
+    "reading2": "Esther 1-2",
+    "reading3": "Proverbs 21:1-4"
+  },
+  {
+    "day": 276,
+    "reading1": "Nehemiah 8",
+    "reading2": "Esther 3, 13",
+    "reading3": "Proverbs 21:5-8"
+  },
+  {
+    "day": 277,
+    "reading1": "Nehemiah 9",
+    "reading2": "Esther 4, 14",
+    "reading3": "Proverbs 21:9-12"
+  },
+  {
+    "day": 278,
+    "reading1": "Nehemiah 10",
+    "reading2": "Esther 15, 6-7",
+    "reading3": "Proverbs 21:13-16"
+  },
+  {
+    "day": 279,
+    "reading1": "Nehemiah 11",
+    "reading2": "Esther 8, 16",
+    "reading3": "Proverbs 21:17-20"
+  },
+  {
+    "day": 280,
+    "reading1": "Nehemiah 12",
+    "reading2": "Esther 9-11",
+    "reading3": "Proverbs 21:21-24"
+  },
+  {
+    "day": 281,
+    "reading1": "Nehemiah 13",
+    "reading2": "Malachi 1-4",
+    "reading3": "Proverbs 21:25-28"
+  },
+  {
+    "day": 282,
+    "reading1": "1 Maccabees 1",
+    "reading2": "Sirach 1-3",
+    "reading3": "Proverbs 21:29-31"
+  },
+  {
+    "day": 283,
+    "reading1": "1 Maccabees 2",
+    "reading2": "Sirach 4-6",
+    "reading3": "Proverbs 22:1-4"
+  },
+  {
+    "day": 284,
+    "reading1": "1 Maccabees 3",
+    "reading2": "Sirach 7-9",
+    "reading3": "Proverbs 22:5-8"
+  },
+  {
+    "day": 285,
+    "reading1": "1 Maccabees 4",
+    "reading2": "Sirach 10-12",
+    "reading3": "Proverbs 22:9-12"
+  },
+  {
+    "day": 286,
+    "reading1": "1 Maccabees 5",
+    "reading2": "Sirach 13-15",
+    "reading3": "Proverbs 22:13-16"
+  },
+  {
+    "day": 287,
+    "reading1": "1 Maccabees 6",
+    "reading2": "Sirach 16-18",
+    "reading3": "Proverbs 22:17-21"
+  },
+  {
+    "day": 288,
+    "reading1": "1 Maccabees 7",
+    "reading2": "Sirach 19-21",
+    "reading3": "Proverbs 22:22-25"
+  },
+  {
+    "day": 289,
+    "reading1": "1 Maccabees 8",
+    "reading2": "Sirach 22-23",
+    "reading3": "Proverbs 22:26-29"
+  },
+  {
+    "day": 290,
+    "reading1": "1 Maccabees 9",
+    "reading2": "Sirach 24-25",
+    "reading3": "Proverbs 23:1-4"
+  },
+  {
+    "day": 291,
+    "reading1": "1 Maccabees 10",
+    "reading2": "Sirach 26-27",
+    "reading3": "Proverbs 23:5-8"
+  },
+  {
+    "day": 292,
+    "reading1": "1 Maccabees 11",
+    "reading2": "Sirach 28-29",
+    "reading3": "Proverbs 23:9-12"
+  },
+  {
+    "day": 293,
+    "reading1": "1 Maccabees 12",
+    "reading2": "Sirach 30-31",
+    "reading3": "Proverbs 23:13-16"
+  },
+  {
+    "day": 294,
+    "reading1": "1 Maccabees 13",
+    "reading2": "Sirach 32-33",
+    "reading3": "Proverbs 23:17-21"
+  },
+  {
+    "day": 295,
+    "reading1": "1 Maccabees 14",
+    "reading2": "Sirach 34-35",
+    "reading3": "Proverbs 23:22-25"
+  },
+  {
+    "day": 296,
+    "reading1": "1 Maccabees 15",
+    "reading2": "Sirach 36-37",
+    "reading3": "Proverbs 23:26-28"
+  },
+  {
+    "day": 297,
+    "reading1": "1 Maccabees 16",
+    "reading2": "Sirach 38-39",
+    "reading3": "Proverbs 23:29-35"
+  },
+  {
+    "day": 298,
+    "reading1": "2 Maccabees 1",
+    "reading2": "Sirach 40-41",
+    "reading3": "Proverbs 24:1-7"
+  },
+  {
+    "day": 299,
+    "reading1": "2 Maccabees 2",
+    "reading2": "Sirach 42-44",
+    "reading3": "Proverbs 24:8-9"
+  },
+  {
+    "day": 300,
+    "reading1": "2 Maccabees 3",
+    "reading2": "Sirach 45-46",
+    "reading3": "Proverbs 24:10-12"
+  },
+  {
+    "day": 301,
+    "reading1": "2 Maccabees 4",
+    "reading2": "Sirach 47-49",
+    "reading3": "Proverbs 24:13-16"
+  },
+  {
+    "day": 302,
+    "reading1": "2 Maccabees 5",
+    "reading2": "Sirach 50-51",
+    "reading3": "Proverbs 24:17-20"
+  },
+  {
+    "day": 303,
+    "reading1": "2 Maccabees 6",
+    "reading2": "Wisdom 1-2",
+    "reading3": "Proverbs 24:21-26"
+  },
+  {
+    "day": 304,
+    "reading1": "2 Maccabees 7",
+    "reading2": "Wisdom 3-4",
+    "reading3": "Proverbs 24:27-29"
+  },
+  {
+    "day": 305,
+    "reading1": "2 Maccabees 8",
+    "reading2": "Wisdom 5-6",
+    "reading3": "Proverbs 24:30-34"
+  },
+  {
+    "day": 306,
+    "reading1": "2 Maccabees 9",
+    "reading2": "Wisdom 7-8",
+    "reading3": "Proverbs 25:1-3"
+  },
+  {
+    "day": 307,
+    "reading1": "2 Maccabees 10",
+    "reading2": "Wisdom 9-10",
+    "reading3": "Proverbs 25:4-7"
+  },
+  {
+    "day": 308,
+    "reading1": "2 Maccabees 11",
+    "reading2": "Wisdom 11-12",
+    "reading3": "Proverbs 25:8-10"
+  },
+  {
+    "day": 309,
+    "reading1": "2 Maccabees 12",
+    "reading2": "Wisdom 13-14",
+    "reading3": "Proverbs 25:11-14"
+  },
+  {
+    "day": 310,
+    "reading1": "2 Maccabees 13",
+    "reading2": "Wisdom 15-16",
+    "reading3": "Proverbs 25:15-17"
+  },
+  {
+    "day": 311,
+    "reading1": "2 Maccabees 14",
+    "reading2": "Wisdom 17-18",
+    "reading3": "Proverbs 25:18-20"
+  },
+  {
+    "day": 312,
+    "reading1": "2 Maccabees 15",
+    "reading2": "Wisdom 19",
+    "reading3": "Proverbs 25:21-23"
+  },
+  {
+    "day": 313,
+    "reading1": "Luke 1-2",
+    "reading2": null,
+    "reading3": "Proverbs 25:24-26"
+  },
+  {
+    "day": 314,
+    "reading1": "Luke 3-5",
+    "reading2": null,
+    "reading3": "Proverbs 25:27-28"
+  },
+  {
+    "day": 315,
+    "reading1": "Luke 6-8",
+    "reading2": null,
+    "reading3": "Proverbs 26:1-3"
+  },
+  {
+    "day": 316,
+    "reading1": "Luke 9-10",
+    "reading2": null,
+    "reading3": "Proverbs 26:4-6"
+  },
+  {
+    "day": 317,
+    "reading1": "Luke 11-12",
+    "reading2": null,
+    "reading3": "Proverbs 26:7-9"
+  },
+  {
+    "day": 318,
+    "reading1": "Luke 13-16",
+    "reading2": null,
+    "reading3": "Proverbs 26:10-12"
+  },
+  {
+    "day": 319,
+    "reading1": "Luke 17-19",
+    "reading2": null,
+    "reading3": "Proverbs 26:13-16"
+  },
+  {
+    "day": 320,
+    "reading1": "Luke 20-22:38",
+    "reading2": null,
+    "reading3": "Proverbs 26:17-19"
+  },
+  {
+    "day": 321,
+    "reading1": "Luke 22:39-24:50",
+    "reading2": null,
+    "reading3": "Proverbs 26:20-23"
+  },
+  {
+    "day": 322,
+    "reading1": "Acts 1",
+    "reading2": "Romans 1",
+    "reading3": "Proverbs 26:24-26"
+  },
+  {
+    "day": 323,
+    "reading1": "Acts 2",
+    "reading2": "Romans 2-3",
+    "reading3": "Proverbs 26:27-28"
+  },
+  {
+    "day": 324,
+    "reading1": "Acts 3",
+    "reading2": "Romans 4-5",
+    "reading3": "Proverbs 27:1-3"
+  },
+  {
+    "day": 325,
+    "reading1": "Acts 4",
+    "reading2": "Romans 6-7",
+    "reading3": "Proverbs 27:4-6"
+  },
+  {
+    "day": 326,
+    "reading1": "Acts 5",
+    "reading2": "Romans 8",
+    "reading3": "Proverbs 27:7-9"
+  },
+  {
+    "day": 327,
+    "reading1": "Acts 6",
+    "reading2": "Romans 9-10",
+    "reading3": "Proverbs 27:10-12"
+  },
+  {
+    "day": 328,
+    "reading1": "Acts 7",
+    "reading2": "Romans 11-12",
+    "reading3": "Proverbs 27:13-14"
+  },
+  {
+    "day": 329,
+    "reading1": "Acts 8",
+    "reading2": "Romans 13-14",
+    "reading3": "Proverbs 27:15-17"
+  },
+  {
+    "day": 330,
+    "reading1": "Acts 9",
+    "reading2": "Romans 15-16",
+    "reading3": "Proverbs 27:18-20"
+  },
+  {
+    "day": 331,
+    "reading1": "Acts 10",
+    "reading2": "1 Corinthians 1-2",
+    "reading3": "Proverbs 27:21-22"
+  },
+  {
+    "day": 332,
+    "reading1": "Acts 11",
+    "reading2": "1 Corinthians 3-4",
+    "reading3": "Proverbs 27:23-27"
+  },
+  {
+    "day": 333,
+    "reading1": "Acts 12",
+    "reading2": "1 Corinthians 5-6",
+    "reading3": "Proverbs 28:1-3"
+  },
+  {
+    "day": 334,
+    "reading1": "Acts 13",
+    "reading2": "1 Corinthians 7-8",
+    "reading3": "Proverbs 28:4-6"
+  },
+  {
+    "day": 335,
+    "reading1": "Acts 14",
+    "reading2": "1 Corinthians 9-10",
+    "reading3": "Proverbs 28:7-9"
+  },
+  {
+    "day": 336,
+    "reading1": "Acts 15",
+    "reading2": "1 Corinthians 11-12",
+    "reading3": "Proverbs 28:10-12"
+  },
+  {
+    "day": 337,
+    "reading1": "Acts 16",
+    "reading2": "1 Corinthians 13-14",
+    "reading3": "Proverbs 28:13-15"
+  },
+  {
+    "day": 338,
+    "reading1": "Acts 17",
+    "reading2": "1 Corinthians 15",
+    "reading3": "Proverbs 28:16-18"
+  },
+  {
+    "day": 339,
+    "reading1": "Acts 18",
+    "reading2": "1 Corinthians 16",
+    "reading3": "Proverbs 28:19-21"
+  },
+  {
+    "day": 340,
+    "reading1": "Acts 19",
+    "reading2": "2 Corinthians 1-2",
+    "reading3": "Proverbs 28:22-24"
+  },
+  {
+    "day": 341,
+    "reading1": "Acts 20",
+    "reading2": "2 Corinthians 3-5",
+    "reading3": "Proverbs 28:25-28"
+  },
+  {
+    "day": 342,
+    "reading1": "Acts 21",
+    "reading2": "2 Corinthians 6-8",
+    "reading3": "Proverbs 29:1-4"
+  },
+  {
+    "day": 343,
+    "reading1": "Acts 22",
+    "reading2": "2 Corinthians 9-11",
+    "reading3": "Proverbs 29:5-7"
+  },
+  {
+    "day": 344,
+    "reading1": "Acts 23",
+    "reading2": "2 Corinthians 12-13",
+    "reading3": "Proverbs 29:8-11"
+  },
+  {
+    "day": 345,
+    "reading1": "Acts 24",
+    "reading2": "Galatians 1-3",
+    "reading3": "Proverbs 29:12-14"
+  },
+  {
+    "day": 346,
+    "reading1": "Acts 25",
+    "reading2": "Galatians 4-6",
+    "reading3": "Proverbs 29:15-17"
+  },
+  {
+    "day": 347,
+    "reading1": "Acts 26",
+    "reading2": "Ephesians 1-3",
+    "reading3": "Proverbs 29:18-21"
+  },
+  {
+    "day": 348,
+    "reading1": "Acts 27",
+    "reading2": "Ephesians 4-6",
+    "reading3": "Proverbs 29:22-24"
+  },
+  {
+    "day": 349,
+    "reading1": "Acts 28",
+    "reading2": "Philippians 1-2",
+    "reading3": "Proverbs 29:25-27"
+  },
+  {
+    "day": 350,
+    "reading1": "James 1-2",
+    "reading2": "Philippians 3-4",
+    "reading3": "Proverbs 30:1-6"
+  },
+  {
+    "day": 351,
+    "reading1": "James 3-5",
+    "reading2": "Colossians 1-2",
+    "reading3": "Proverbs 30:7-9"
+  },
+  {
+    "day": 352,
+    "reading1": "1 Peter 1-2",
+    "reading2": "Colossians 3-4",
+    "reading3": "Proverbs 30:10-14"
+  },
+  {
+    "day": 353,
+    "reading1": "1 Peter 3-5",
+    "reading2": "1 Thessalonians 1-3",
+    "reading3": "Proverbs 30:15-16"
+  },
+  {
+    "day": 354,
+    "reading1": "2 Peter 1-3",
+    "reading2": "1 Thessalonians 4-5",
+    "reading3": "Proverbs 30:17-19"
+  },
+  {
+    "day": 355,
+    "reading1": "1 John 1-3",
+    "reading2": "2 Thessalonians 1-3",
+    "reading3": "Proverbs 30:20-23"
+  },
+  {
+    "day": 356,
+    "reading1": "1 John 4-5",
+    "reading2": "1 Timothy 1-3",
+    "reading3": "Proverbs 30:24-28"
+  },
+  {
+    "day": 357,
+    "reading1": "2 John, 3 John",
+    "reading2": "1 Timothy 4-6",
+    "reading3": "Proverbs 30:29-33"
+  },
+  {
+    "day": 358,
+    "reading1": "Jude",
+    "reading2": "2 Timothy 1-2",
+    "reading3": "Proverbs 31:1-7"
+  },
+  {
+    "day": 359,
+    "reading1": "Revelation 1-3",
+    "reading2": "2 Timothy 3-4",
+    "reading3": "Proverbs 31:8-9"
+  },
+  {
+    "day": 360,
+    "reading1": "Revelation 4-7",
+    "reading2": "Titus 1-3",
+    "reading3": "Proverbs 31:10-15"
+  },
+  {
+    "day": 361,
+    "reading1": "Revelation 8-11",
+    "reading2": "Philemon",
+    "reading3": "Proverbs 31:16-18"
+  },
+  {
+    "day": 362,
+    "reading1": "Revelation 12-14",
+    "reading2": "Hebrews 1-4",
+    "reading3": "Proverbs 31:19-22"
+  },
+  {
+    "day": 363,
+    "reading1": "Revelation 15-17",
+    "reading2": "Hebrews 5-8",
+    "reading3": "Proverbs 31:23-25"
+  },
+  {
+    "day": 364,
+    "reading1": "Revelation 18-20",
+    "reading2": "Hebrews 9-10",
+    "reading3": "Proverbs 31:26-29"
+  },
+  {
+    "day": 365,
+    "reading1": "Revelation 21-22",
+    "reading2": "Hebrews 11-13",
+    "reading3": "Proverbs 31:30-31"
+  }
+]
+
+
+          check.addEventListener('click', function(e) {
+            e.preventDefault();
+            var dayValue = day.value;
+            let result = data.filter((item) => item.day == dayValue);
+            if(result.length) {
+              let reading1 = result[0].reading1 == null ? '': result[0].reading1;
+              let reading2 = result[0].reading2 == null ? '': result[0].reading2;
+              let reading3 = result[0].reading3 == null ? '': result[0].reading3;
+              document.getElementById('text1').setAttribute('value', reading1);
+              document.getElementById('text2').setAttribute('value', reading2);
+              document.getElementById('text3').setAttribute('value', reading3);
+            } else {
+              alert("incorrect day entered")
+            }
+        });
+    })();
+</script>
 </html>
